@@ -1,4 +1,3 @@
-import imp
 import discord, json
 from discord.ext import commands
 from core.classes import Cog_Extension
