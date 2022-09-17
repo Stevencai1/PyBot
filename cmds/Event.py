@@ -17,8 +17,7 @@ class Event(Cog_Extension):
 
     @commands.Cog.listener()
     async def on_message(self, msg):
-        sleep = ['ZZZ', 'zzz']
-        if msg.content in sleep and msg.author != self.bot.user:
+        if msg.content in jdata['sleep'] and msg.author != self.bot.user:
             await msg.channel.send('ZZZzzz')
 
 def setup(bot):
