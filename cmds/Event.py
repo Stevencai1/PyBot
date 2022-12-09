@@ -20,5 +20,5 @@ class Event(Cog_Extension):
         if msg.content in jdata['sleep'] and msg.author != self.bot.user:
             await msg.channel.send('ZZZzzz')
 
-def setup(bot):
-    bot.add_cog(Event(bot))
+async def setup(bot):
+    await bot.add_cog(Event(bot))

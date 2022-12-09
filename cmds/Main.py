@@ -24,5 +24,5 @@ class Main(Cog_Extension):
         if rolls_value == 100 or rolls_value == -10:
             await ctx.send(f'__**高雄發大財**__')
 
-def setup(bot):
-    bot.add_cog(Main(bot))
+async def setup(bot):
+    await bot.add_cog(Main(bot))

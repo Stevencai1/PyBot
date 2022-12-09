@@ -15,5 +15,5 @@ class React(Cog_Extension):
         await ctx.channel.purge(limit=num+1)
         await ctx.send(f'已成功清除 `{num}` 個訊息！')
 
-def setup(bot):
-    bot.add_cog(React(bot))
+async def setup(bot):
+    await bot.add_cog(React(bot))

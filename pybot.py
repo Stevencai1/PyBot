@@ -1,4 +1,4 @@
-import discord, json, os
+import discord, json, os, asyncio
 from discord.ext import commands
 with open('setting.json', 'r', encoding='utf8') as jfiles:
     jdata = json.load(jfiles)
@@ -12,22 +12,24 @@ async def on_ready():
 
 @bot.command()
 async def load(ctx, extension):
-    bot.load_extension(f'cmds.{extension}')
+    await bot.load_extension(f'cmds.{extension}')
     await ctx.send(f'Load `{extension}` completed!')
 
 @bot.command()
 async def unload(ctx, extension):
-    bot.unload_extension(f'cmds.{extension}')
+    await bot.unload_extension(f'cmds.{extension}')
     await ctx.send(f'Unload `{extension}` completed!')
 
 @bot.command()
 async def reload(ctx, extension):
-    bot.reload_extension(f'cmds.{extension}')
+    await bot.reload_extension(f'cmds.{extension}')
     await ctx.send(f'Reload `{extension}` completed!')
 
-for filename in os.listdir('./cmds'):
-    if filename.endswith('.py'):
-        bot.load_extension(f'cmds.{filename[:-3]}')
+async def main():
+    for filename in os.listdir('./cmds'):
+        if filename.endswith('.py'):
+            await bot.load_extension(f'cmds.{filename[:-3]}')
+    await bot.start(jdata['token'])
 
 if __name__ == "__main__":
-    bot.run(jdata['token'])
+    asyncio.run(main())
